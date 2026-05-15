@@ -1,0 +1,293 @@
+/* =====================================================================
+   InKuba · Coming Soon · Hero (Viewport 1)
+   ===================================================================== */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;            /* mobile-safe */
+  min-height: 640px;
+  overflow: hidden;
+  background: var(--ink-black);
+  color: var(--ink-paper);
+  isolation: isolate;
+}
+
+/* ----- Foto dominante (placeholder por ahora) ----- */
+.hero__image {
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/hero.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  opacity: 0;
+  animation: hero-fade-in 1.4s var(--ease-out-expo) forwards;
+}
+
+@keyframes hero-fade-in {
+  to { opacity: 1; }
+}
+
+/* ----- Vignette / scrim para mejorar legibilidad ----- */
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse at center, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.55) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.15) 70%, rgba(0,0,0,0.65) 100%);
+  pointer-events: none;
+}
+
+/* ----- Contenido sobre la foto ----- */
+.hero__top,
+.hero__center,
+.hero__bottom,
+.hero__scroll-hint {
+  position: absolute;
+  z-index: 2;
+}
+
+/* Top bar */
+.hero__top {
+  top: clamp(20px, 4vh, 40px);
+  left: var(--pad-x);
+  right: var(--pad-x);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.hero__address {
+  opacity: 0.7;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 480px) {
+  .hero__address { font-size: 10px; letter-spacing: 1.5px; }
+}
+
+/* Centro vertical */
+.hero__center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(92%, 1100px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(8px, 2vh, 24px);
+}
+
+.hero__title {
+  margin: 0;
+  /* hereda .wordmark-hero */
+  animation: hero-content-in 1.2s 0.3s var(--ease-out-expo) both;
+}
+
+.hero__claim {
+  letter-spacing: 4px;
+  color: var(--ink-paper);
+  opacity: 0.85;
+  font-size: clamp(11px, 1.2vw, 13px);
+  text-transform: uppercase;
+  animation: hero-content-in 1.2s 0.6s var(--ease-out-expo) both;
+}
+
+@keyframes hero-content-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* "muy pronto" SVG (interacción #03 — la animación de stroke vive en stroke-in.js / inline) */
+.muy-pronto {
+  width: clamp(180px, 28vw, 320px);
+  height: auto;
+  overflow: visible;
+  margin-bottom: clamp(4px, 1vh, 12px);
+}
+
+.muy-pronto__text {
+  fill: var(--ink-paper);
+  stroke: var(--ink-paper);
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  /* JS calcula stroke-dasharray real con getComputedTextLength.
+     Defaults para fallback / estado pre-JS. */
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  fill-opacity: 0;
+  animation: muy-pronto-draw 4.5s var(--ease-in-out) 0.8s infinite;
+}
+
+@keyframes muy-pronto-draw {
+  0%   { stroke-dashoffset: 1200; fill-opacity: 0;    opacity: 1; }
+  50%  { stroke-dashoffset: 0;    fill-opacity: 0.4;  opacity: 1; }
+  60%  { stroke-dashoffset: 0;    fill-opacity: 1;    opacity: 1; }
+  85%  { stroke-dashoffset: 0;    fill-opacity: 1;    opacity: 1; }
+  100% { stroke-dashoffset: 0;    fill-opacity: 1;    opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .muy-pronto__text {
+    fill-opacity: 1;
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+  .hero__image,
+  .hero__title,
+  .hero__claim {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* Bottom */
+.hero__bottom {
+  bottom: clamp(24px, 4.5vh, 48px);
+  left: var(--pad-x);
+  right: var(--pad-x);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-3);
+}
+
+.hero__by {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero__by-label {
+  letter-spacing: 3px;
+  opacity: 0.55;
+}
+
+.hero__by-names {
+  font-family: var(--font-display);
+  font-size: clamp(15px, 1.8vw, 18px);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--ink-paper);
+}
+
+.hero__ctas {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid var(--ink-line);
+  border-radius: var(--radius-md);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--ink-paper);
+  background: rgba(10, 10, 10, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background .25s var(--ease-out-expo), border-color .25s var(--ease-out-expo), transform .25s var(--ease-out-expo);
+}
+
+.hero__cta:hover {
+  background: rgba(244, 241, 236, 0.1);
+  border-color: rgba(244, 241, 236, 0.4);
+  transform: translateY(-1px);
+}
+
+.hero__cta svg { flex-shrink: 0; }
+
+@media (max-width: 600px) {
+  .hero__bottom {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+  }
+  .hero__ctas { justify-content: stretch; }
+  .hero__cta {
+    flex: 1;
+    justify-content: center;
+    padding: 12px 14px;
+  }
+  .hero__cta span { display: inline; }
+}
+
+/* Scroll hint */
+.hero__scroll-hint {
+  bottom: clamp(12px, 2vh, 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.45;
+  color: var(--ink-paper);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 10px;
+  animation: scroll-hint-bob 2.4s ease-in-out infinite;
+}
+
+@keyframes scroll-hint-bob {
+  0%, 100% { transform: translate(-50%, 0); }
+  50%      { transform: translate(-50%, 6px); }
+}
+
+@media (max-width: 600px) {
+  .hero__scroll-hint { display: none; }
+}
+
+/* Sentinel invisible al final del hero (usado por sticky CTA) */
+#hero-sentinel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+/* ----- Visually hidden util (compartido con modal) ----- */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ----- Footer mínimo (después de la galería) ----- */
+.page-footer {
+  background: var(--ink-black);
+  border-top: 1px solid var(--ink-line);
+  padding: var(--space-6) var(--pad-x);
+}
+
+.page-footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  text-align: center;
+}
+
+.page-footer__credits {
+  color: var(--ink-faint);
+  margin-top: var(--space-2);
+}

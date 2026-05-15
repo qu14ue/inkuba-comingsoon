@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="vignette" cx="50%" cy="45%" r="75%">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="60%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+    <pattern id="grain" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="4" fill="#0d0d0d"/>
+      <circle cx="1" cy="1" r="0.4" fill="#1f1f1f" opacity="0.5"/>
+      <circle cx="3" cy="2" r="0.3" fill="#181818" opacity="0.4"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#vignette)"/>
+  <rect width="1920" height="1080" fill="url(#grain)" opacity="0.3"/>
+  <g opacity="0.18" fill="none" stroke="#f4f1ec" stroke-width="1">
+    <rect x="60" y="60" width="1800" height="960"/>
+    <line x1="60" y1="540" x2="1860" y2="540"/>
+    <line x1="960" y1="60" x2="960" y2="1020"/>
+  </g>
+  <g transform="translate(960 540)" text-anchor="middle" fill="#f4f1ec" font-family="'Courier New', monospace">
+    <text y="-20" font-size="22" letter-spacing="6" opacity="0.55">HERO PLACEHOLDER</text>
+    <text y="20" font-size="13" letter-spacing="3" opacity="0.35">reemplazar por foto definitiva — assets/hero.jpg</text>
+  </g>
+</svg>

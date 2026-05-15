@@ -1,0 +1,131 @@
+/* =====================================================================
+   InKuba · Coming Soon · Base reset + tipografía base
+   ===================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--ink-black);
+  color: var(--ink-paper);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  body { font-size: 14px; }
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink-paper);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ---------- Wordmarks (5.1.bis del spec) ---------- */
+
+.wordmark-hero {
+  font-family: var(--font-display);
+  font-size: clamp(60px, 11vw, 150px);
+  font-weight: 700;
+  letter-spacing: clamp(5px, 1vw, 14px);
+  line-height: 1;
+  color: var(--ink-paper);
+  text-transform: uppercase;
+  text-rendering: optimizeLegibility;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
+}
+
+.wordmark-nav {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 3.2px;
+  color: var(--ink-paper);
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.wordmark-nav__sub {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  opacity: 0.5;
+  margin-left: 4px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .wordmark-nav      { font-size: 13px; letter-spacing: 2.3px; }
+  .wordmark-nav__sub { font-size: 6px;  letter-spacing: 0.8px; }
+}
+
+/* ---------- Utilidades de UI ---------- */
+
+.eyebrow {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,108 @@
+/* =====================================================================
+   InKuba · Coming Soon · Galería · Grid 4×2 editorial (v0.3)
+   ---------------------------------------------------------------------
+   - 4 columnas × 2 filas en desktop/tablet (8 piezas seleccionadas)
+   - 2 columnas × 4 filas en mobile
+   - Siempre B&N — sin hover, sin animaciones
+   - Gap generoso, padding lateral amplio: lectura editorial / archivo
+   ===================================================================== */
+
+.grid-gallery {
+  background: var(--ink-black);
+  padding: clamp(56px, 8vh, 96px) clamp(24px, 5vw, 80px);
+}
+
+.grid-gallery__grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(32px, 3vw, 40px);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* ----- Celda ----- */
+.grid-gallery__cell {
+  position: relative;
+  aspect-ratio: 8 / 11;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--ink-near-black);
+  box-shadow:
+    0 24px 64px -20px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.grid-gallery__cell picture,
+.grid-gallery__cell img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.grid-gallery__cell img {
+  /* B&N permanente — sin animaciones */
+  filter: grayscale(1);
+}
+
+/* =====================================================================
+   Responsive: mismas 8 piezas, 4×2 → 2×4
+   ===================================================================== */
+
+@media (max-width: 1023px) {
+  .grid-gallery__grid {
+    gap: clamp(24px, 3vw, 32px);
+  }
+}
+
+@media (max-width: 767px) {
+  .grid-gallery {
+    padding: clamp(40px, 6vh, 64px) 20px;
+  }
+  .grid-gallery__grid {
+    grid-template-columns: repeat(2, 1fr);   /* 2 × 4 */
+    gap: 18px;
+  }
+}
+
+@media (max-width: 479px) {
+  .grid-gallery__grid {
+    gap: 14px;
+  }
+}
+
+/* =====================================================================
+   Footer del grid: "8 / 30 piezas · ..."
+   ===================================================================== */
+
+.grid-gallery__foot {
+  margin-top: clamp(40px, 6vh, 64px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.grid-gallery__foot-line {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+}
+
+.grid-gallery__foot-link {
+  color: inherit;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 1px;
+  transition: color .2s ease, border-color .2s ease;
+}
+
+.grid-gallery__foot-link:hover {
+  color: var(--ink-paper);
+  border-color: var(--ink-paper);
+}
