@@ -228,6 +228,12 @@
   margin-bottom: 4px;
 }
 
+/* El display:flex de arriba sobreescribe [hidden] — forzamos display:none */
+.modal__form[hidden],
+.modal__success[hidden] {
+  display: none;
+}
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   .sticky-cta,

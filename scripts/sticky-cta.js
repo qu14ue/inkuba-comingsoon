@@ -149,7 +149,7 @@
    * el flujo se pueda probar end-to-end.
    */
   async function submitNotify({ type, value }) {
-    const WEB3FORMS_KEY = ""; // <-- pegar access_key acá cuando esté
+    const WEB3FORMS_KEY = "d7274279-6e1b-4011-a966-84647b68d8c4";
 
     if (!WEB3FORMS_KEY) {
       // Stub provisional

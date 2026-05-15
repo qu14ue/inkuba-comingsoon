@@ -14,17 +14,32 @@
   isolation: isolate;
 }
 
-/* ----- Foto dominante (placeholder por ahora) ----- */
+/* ----- Foto dominante ----- */
 .hero__image {
   position: absolute;
   inset: 0;
-  background-image: url("../assets/hero.png");
+  background-image: url("../assets/hero.webp");
+  background-image: image-set(
+    url("../assets/hero.webp") type("image/webp"),
+    url("../assets/hero.jpg")  type("image/jpeg")
+  );
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   z-index: 0;
   opacity: 0;
   animation: hero-fade-in 1.4s var(--ease-out-expo) forwards;
+}
+
+@media (max-width: 768px) {
+  .hero__image {
+    background-image: url("../assets/hero-mobile.webp");
+    background-image: image-set(
+      url("../assets/hero-mobile.webp") type("image/webp"),
+      url("../assets/hero-mobile.jpg")  type("image/jpeg")
+    );
+    background-position: center top;
+  }
 }
 
 @keyframes hero-fade-in {
